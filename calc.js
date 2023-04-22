@@ -1,5 +1,11 @@
 
    
+let firstNum = '';
+let secondNum = '';
+let operator = '';
+let displayVal = '';
+
+
 
 function operate(num1, num2, operator) {
     
@@ -44,3 +50,8 @@ function divide(num1, ...arguments) {
     }
     return num1;
 }
+
+// const addition = document.querySelector(".add")
+
+// add.addEventListener('onclick', operate);
+
