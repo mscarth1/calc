@@ -1,19 +1,19 @@
 
-let num1;
-let num2;
-let operator;
+   
 
-function operate(num1, operator, num2) {
-    if (operator == "+") {
-        add(num1, num2);
-    } else if (operator == "-") {
-        subtract(num1, num2); 
-    } else if (operator == "*") {
-        multiply(num2, num2);
-    } else if (operator == "/") {
-        divide(num1, num2)
+function operate(num1, num2, operator) {
+    
+    if (operator === "+") {
+        return num1 + num2;
+    } else if (operator === "-") {
+        return num1 - num2;
+    } else if (operator === "*") {
+        return num1 * num2;
+    } else if (operator === "/") {
+        return num1 / num2;
     }
 }
+
 
 function add(...arguments) {
     let sum = 0;
