@@ -1,10 +1,8 @@
 
-   
 let firstNum = '';
 let secondNum = '';
 let operator = '';
-let displayVal = '';
-
+var displayVal = '';
 
 
 function operate(num1, num2, operator) {
@@ -19,7 +17,6 @@ function operate(num1, num2, operator) {
         return num1 / num2;
     }
 }
-
 
 function add(...arguments) {
     let sum = 0;
@@ -51,17 +48,23 @@ function divide(num1, ...arguments) {
     return num1;
 }
 
+numberBtns.addEventListener("click", updateNum);
+
+function updateNum (e) {
+    displayVal = e.target.value;
+    document.getElementById("display").textContent = displayVal;
+}
+
+operations.addEventListener("click", updateOperator);
+
+function updateOperator (e) {
+    displayVal = e.target.value;
+    document.getElementById("display").textContent = displayVal;
+}
+
 // const addition = document.querySelector(".add")
 
 // add.addEventListener('onclick', operate);
 
 // let numberEntry = document.querySelectorAll('.numbers')
 
-
-numberBtns.addEventListener("click", updateNum);
-
-function updateNum (e) {
-    let x = e.target.value;
-    document.getElementById("display").textContent = x;
-    console.log(x)
-}
