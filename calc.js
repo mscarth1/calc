@@ -55,3 +55,13 @@ function divide(num1, ...arguments) {
 
 // add.addEventListener('onclick', operate);
 
+// let numberEntry = document.querySelectorAll('.numbers')
+
+
+numberBtns.addEventListener("click", updateNum);
+
+function updateNum (e) {
+    let x = e.target.value;
+    document.getElementById("display").textContent = x;
+    console.log(x)
+}
