@@ -1,20 +1,23 @@
 
-let firstNum = '';
-let secondNum = '';
 let operator = '';
-var displayVal = '';
+let currentNumber = '';
+let previousNumber = '';
+let result = '';
 
+let tempNumber = '';
 
-function operate(num1, num2, operator) {
+let clearDisplay = false;
+
+function operate(currentNumber, previousNumber, operator) {
     
     if (operator === "+") {
-        return num1 + num2;
+        return parseFloat(currentNumber) + parseFloat(previousNumber);
     } else if (operator === "-") {
-        return num1 - num2;
+        return parseFloat(currentNumber) - parseFloat(previousNumber);
     } else if (operator === "*") {
-        return num1 * num2;
+        return parseFloat(currentNumber) * parseFloat(previousNumber);
     } else if (operator === "/") {
-        return num1 / num2;
+        return parseFloat(currentNumber) / parseFloat(previousNumber);
     }
 }
 
@@ -48,23 +51,33 @@ function divide(num1, ...arguments) {
     return num1;
 }
 
-numberBtns.addEventListener("click", updateNum);
+const display = document.querySelector("#display");
 
-function updateNum (e) {
-    displayVal = e.target.value;
-    document.getElementById("display").textContent = displayVal;
-}
 
-operations.addEventListener("click", updateOperator);
 
-function updateOperator (e) {
-    displayVal = e.target.value;
-    document.getElementById("display").textContent = displayVal;
-}
+btnsNumbers.addEventListener("click", e => {
+    if (display ==='0' || clearDisplay === true) {
+        currentNumber = e.target.value;
+        display.textContent = currentNumber;
+        clearDisplay = false;
+    } else {
+        display.textContent = currentNumber += e.target.value;
+    }
+});
 
-// const addition = document.querySelector(".add")
 
-// add.addEventListener('onclick', operate);
 
-// let numberEntry = document.querySelectorAll('.numbers')
+
+const operators = document.querySelector('.operators')
+const action = operators.dataset.action
+
+btnsOperators.addEventListener("click", e => {
+      if (action) {
+        previousNumber = display.textContent;
+        clearDisplay = true;
+      } else if (operator === '=') {
+        
+      }
+});
+
 

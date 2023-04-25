@@ -11,29 +11,27 @@
 <body>
 
     <div id="calcContainer">
-        <div id="display">
-            <div>123456</div>
-        </div>
-        <div id="numberBtns">
-            <button class="numbers" value="1">1</button>
-            <button class="numbers" value="2">2</button>
-            <button class="numbers" value="3">3</button>
-            <button class="numbers" value="4">4</button>
-            <button class="numbers" value="5">5</button>
-            <button class="numbers" value="6">6</button>
-            <button class="numbers" value="7">7</button>
-            <button class="numbers" value="8">8</button>
-            <button class="numbers" value="9">9</button>
-            <button class="numbers" value="0">0</button>
-        </div>
-        <div id="operations">
-            <button class="operators" id="add" value="+">+</button>
-            <button class="operators" id="sub" value="-">-</button>
-            <button class="operators" id="mult" value="*">*</button>
-            <button class="operators" id="divide" value="/">/</button>
-            <button class="operators" id="equals" value="=">=</button>
-            <button class="operators" id="clear">AC</button>        
-        </div>
+        <div id="display">0</div>
+            <div id="btnsNumbers">
+                <button class="numbers" value="1">1</button>
+                <button class="numbers" value="2">2</button>
+                <button class="numbers" value="3">3</button>
+                <button class="numbers" value="4">4</button>
+                <button class="numbers" value="5">5</button>
+                <button class="numbers" value="6">6</button>
+                <button class="numbers" value="7">7</button>
+                <button class="numbers" value="8">8</button>
+                <button class="numbers" value="9">9</button>
+                <button class="numbers" value="0">0</button>
+            </div>
+            <div id="btnsOperators">
+                <button class="operators" data-action="add" value="+">+</button>
+                <button class="operators" data-action="subtract" value="-">-</button>
+                <button class="operators" data-action="multiply" value="*">*</button>
+                <button class="operators" data-action="divide" value="/">/</button>
+                <button class="operators" data-action="equals" value="=">=</button>
+                <button class="operators" data-action="clear">AC</button>          
+            </div>    
     </div>
 
 </body>
