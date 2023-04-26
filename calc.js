@@ -11,14 +11,15 @@ let clearDisplay = false;
 function operate(currentNumber, previousNumber, operator) {
     
     if (operator === "+") {
-        return parseFloat(currentNumber) + parseFloat(previousNumber);
+        result = parseFloat(currentNumber) + parseFloat(previousNumber);
     } else if (operator === "-") {
-        return parseFloat(currentNumber) - parseFloat(previousNumber);
+        result = parseFloat(previousNumber) - parseFloat(currentNumber);
     } else if (operator === "*") {
-        return parseFloat(currentNumber) * parseFloat(previousNumber);
+        result = parseFloat(currentNumber) * parseFloat(previousNumber);
     } else if (operator === "/") {
-        return parseFloat(currentNumber) / parseFloat(previousNumber);
+        result = parseFloat(previousNumber) / parseFloat(currentNumber);
     }
+    display.textContent = result;
 }
 
 function add(...arguments) {
@@ -66,18 +67,33 @@ btnsNumbers.addEventListener("click", e => {
 });
 
 
-
-
 const operators = document.querySelector('.operators')
 const action = operators.dataset.action
 
 btnsOperators.addEventListener("click", e => {
-      if (action) {
+      if (action && operator === '') {
         previousNumber = display.textContent;
+        operator = e.target.value;
         clearDisplay = true;
-      } else if (operator === '=') {
+    } else if (action && operator !== '') {
+        operator = e.target.value;
+        previousNumber = result;
         
-      }
+    }
 });
 
 
+const answer = operators.dataset.clear;
+
+
+btnsClear.addEventListener("click", e => {
+    
+        operate(currentNumber, previousNumber, operator);
+        clearDisplay = true;
+        
+
+    console.log(currentNumber);
+    console.log(previousNumber);
+    console.log(operator);
+
+})
