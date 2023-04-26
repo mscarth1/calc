@@ -1,11 +1,11 @@
+const display = document.querySelector("#display");
+const operators = document.querySelector('.operators')
+const action = operators.dataset.action
 
 let operator = '';
 let currentNumber = '';
 let previousNumber = '';
 let result = '';
-
-let tempNumber = '';
-
 let clearDisplay = false;
 
 function operate(currentNumber, previousNumber, operator) {
@@ -22,37 +22,35 @@ function operate(currentNumber, previousNumber, operator) {
     display.textContent = result;
 }
 
-function add(...arguments) {
-    let sum = 0;
-    for (i = 0; i < arguments.length; i++) {
-        sum += arguments[i];
-    }
-    return sum;
-}
+// function add(...arguments) {
+//     let sum = 0;
+//     for (i = 0; i < arguments.length; i++) {
+//         sum += arguments[i];
+//     }
+//     return sum;
+// }
 
-function subtract(num1, ...arguments) {
-    for (i = 0; i < arguments.length; i++) {
-        num1 -= arguments[i];
-    }
-    return num1;
-}
+// function subtract(num1, ...arguments) {
+//     for (i = 0; i < arguments.length; i++) {
+//         num1 -= arguments[i];
+//     }
+//     return num1;
+// }
 
-function multiply(...arguments) {
-    let sum = 1;
-    for (i = 0; i < arguments.length; i++) {
-        sum *= arguments[i];
-    }
-    return sum;
-}
+// function multiply(...arguments) {
+//     let sum = 1;
+//     for (i = 0; i < arguments.length; i++) {
+//         sum *= arguments[i];
+//     }
+//     return sum;
+// }
 
-function divide(num1, ...arguments) {
-    for (i = 0; i < arguments.length; i++) {
-        num1 /= arguments[i];
-    }
-    return num1;
-}
-
-const display = document.querySelector("#display");
+// function divide(num1, ...arguments) {
+//     for (i = 0; i < arguments.length; i++) {
+//         num1 /= arguments[i];
+//     }
+//     return num1;
+// }
 
 
 
@@ -67,8 +65,6 @@ btnsNumbers.addEventListener("click", e => {
 });
 
 
-const operators = document.querySelector('.operators')
-const action = operators.dataset.action
 
 btnsOperators.addEventListener("click", e => {
       if (action && operator === '') {
@@ -78,12 +74,10 @@ btnsOperators.addEventListener("click", e => {
     } else if (action && operator !== '') {
         operator = e.target.value;
         previousNumber = result;
-        
+            
     }
 });
 
-
-const answer = operators.dataset.clear;
 
 
 btnsClear.addEventListener("click", e => {
