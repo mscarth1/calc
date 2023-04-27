@@ -2,23 +2,24 @@ const display = document.querySelector("#display");
 const operators = document.querySelector('.operators')
 const action = operators.dataset.action
 
-let operator = '';
+let firstOperator = '';
+let secondOperator = '';
+
 let currentNumber = '';
 let previousNumber = '';
 let result = '';
 let clearDisplay = false;
 
 function operate(currentNumber, previousNumber, operator) {
-    
-    if (operator === "+") {
-        result = parseFloat(currentNumber) + parseFloat(previousNumber);
-    } else if (operator === "-") {
-        result = parseFloat(previousNumber) - parseFloat(currentNumber);
-    } else if (operator === "*") {
-        result = parseFloat(currentNumber) * parseFloat(previousNumber);
-    } else if (operator === "/") {
-        result = parseFloat(previousNumber) / parseFloat(currentNumber);
-    }
+        if (operator === "+") {
+            result = parseFloat(currentNumber) + parseFloat(previousNumber);
+        } else if (operator === "-") {
+            result = parseFloat(currentNumber) - parseFloat(previousNumber);
+        } else if (operator === "*") {
+            result = parseFloat(currentNumber) * parseFloat(previousNumber);
+        } else if (operator === "/") {
+            result = parseFloat(currentNumber) / parseFloat(previousNumber);
+        }
     display.textContent = result;
 }
 
@@ -65,29 +66,57 @@ btnsNumbers.addEventListener("click", e => {
 });
 
 
-
 btnsOperators.addEventListener("click", e => {
-      if (action && operator === '') {
-        previousNumber = display.textContent;
-        operator = e.target.value;
-        clearDisplay = true;
-    } else if (action && operator !== '') {
-        operator = e.target.value;
+      if (firstOperator !== '' && secondOperator === '') { 
+        operate(previousNumber, currentNumber, firstOperator);
         previousNumber = result;
-            
+        secondOperator = e.target.value;
+        clearDisplay = true;
+    } else if (firstOperator !== '' && secondOperator !== '') { 
+        display.textContent = result;
+        operate(previousNumber, currentNumber, secondOperator);
+        previousNumber = result;
+        secondOperator = e.target.value;
+        clearDisplay = true;   
+    } else {
+        firstOperator = e.target.value;
+        previousNumber = display.textContent;
+        clearDisplay = true;
     }
 });
 
 
-
 btnsClear.addEventListener("click", e => {
-    
-        operate(currentNumber, previousNumber, operator);
+        if (firstOperator !== '' && secondOperator === '') {
+        operate(previousNumber, currentNumber, firstOperator);
         clearDisplay = true;
-        
+        } else if (firstOperator !== '' && secondOperator !== '') {
+            operate(previousNumber, currentNumber, secondOperator)
+        }
 
     console.log(currentNumber);
     console.log(previousNumber);
-    console.log(operator);
+    console.log(firstOperator);
+    console.log(secondOperator);
+    console.log(result);
 
 })
+
+
+
+
+// btnsOperators.addEventListener("click", e => {
+//     if (firstOperator !== '' && secondOperator === '') { 
+//       secondOperator = e.target.value;
+//       operate(previousNumber, currentNumber, firstOperator); 
+//       clearDisplay = true;
+//   } else if (firstOperator !== '' && secondOperator !== '') { 
+//       display.textContent = result;
+//       operate(result, currentNumber, secondOperator);
+//       clearDisplay = true;   
+//   } else {
+//       firstOperator = e.target.value;
+//       previousNumber = display.textContent;
+//       clearDisplay = true;
+//   }
+// });
