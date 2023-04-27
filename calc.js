@@ -67,6 +67,10 @@ btnClear.addEventListener("click", e => {
     display.textContent = 0;
 })
 
+btnDelete.addEventListener("click", e => {
+    display.textContent = display.textContent.slice(0, -1);
+    currentNumber = display.textContent;
+})
 
 
 
