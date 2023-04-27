@@ -1,10 +1,7 @@
 const display = document.querySelector("#display");
-const operators = document.querySelector('.operators')
-const action = operators.dataset.action
 
 let firstOperator = '';
 let secondOperator = '';
-
 let currentNumber = '';
 let previousNumber = '';
 let result = '';
@@ -19,9 +16,59 @@ function operate(currentNumber, previousNumber, operator) {
             result = parseFloat(currentNumber) * parseFloat(previousNumber);
         } else if (operator === "/") {
             result = parseFloat(currentNumber) / parseFloat(previousNumber);
-        }
-    display.textContent = result;
+        } 
+    display.textContent = Math.round((result + Number.EPSILON) * 100) / 100;
 }
+
+btnsNumbers.addEventListener("click", e => {
+    if (display ==='0' || clearDisplay === true) {
+        currentNumber = e.target.value;
+        display.textContent = currentNumber;
+        clearDisplay = false;
+    } else {
+        display.textContent = currentNumber += e.target.value;
+    }
+});
+
+btnsOperators.addEventListener("click", e => {
+      if (firstOperator !== '' && secondOperator === '') { 
+        operate(previousNumber, currentNumber, firstOperator);
+        previousNumber = result;
+        secondOperator = e.target.value;
+        clearDisplay = true;
+    } else if (firstOperator !== '' && secondOperator !== '') { 
+        display.textContent = result;
+        operate(previousNumber, currentNumber, secondOperator);
+        previousNumber = result;
+        secondOperator = e.target.value;
+        clearDisplay = true;   
+    } else {
+        firstOperator = e.target.value;
+        previousNumber = display.textContent;
+        clearDisplay = true;
+    }
+});
+
+btnEquals.addEventListener("click", e => {
+        if (firstOperator !== '' && secondOperator === '') {
+        operate(previousNumber, currentNumber, firstOperator);
+        clearDisplay = true;
+        } else if (firstOperator !== '' && secondOperator !== '') {
+            operate(previousNumber, currentNumber, secondOperator)
+        }
+})
+
+btnClear.addEventListener("click", e => {
+    firstOperator = '';
+    secondOperator = '';
+    currentNumber = '';
+    previousNumber = '';
+    result = '';
+    display.textContent = 0;
+})
+
+
+
 
 // function add(...arguments) {
 //     let sum = 0;
@@ -52,71 +99,3 @@ function operate(currentNumber, previousNumber, operator) {
 //     }
 //     return num1;
 // }
-
-
-
-btnsNumbers.addEventListener("click", e => {
-    if (display ==='0' || clearDisplay === true) {
-        currentNumber = e.target.value;
-        display.textContent = currentNumber;
-        clearDisplay = false;
-    } else {
-        display.textContent = currentNumber += e.target.value;
-    }
-});
-
-
-btnsOperators.addEventListener("click", e => {
-      if (firstOperator !== '' && secondOperator === '') { 
-        operate(previousNumber, currentNumber, firstOperator);
-        previousNumber = result;
-        secondOperator = e.target.value;
-        clearDisplay = true;
-    } else if (firstOperator !== '' && secondOperator !== '') { 
-        display.textContent = result;
-        operate(previousNumber, currentNumber, secondOperator);
-        previousNumber = result;
-        secondOperator = e.target.value;
-        clearDisplay = true;   
-    } else {
-        firstOperator = e.target.value;
-        previousNumber = display.textContent;
-        clearDisplay = true;
-    }
-});
-
-
-btnsClear.addEventListener("click", e => {
-        if (firstOperator !== '' && secondOperator === '') {
-        operate(previousNumber, currentNumber, firstOperator);
-        clearDisplay = true;
-        } else if (firstOperator !== '' && secondOperator !== '') {
-            operate(previousNumber, currentNumber, secondOperator)
-        }
-
-    console.log(currentNumber);
-    console.log(previousNumber);
-    console.log(firstOperator);
-    console.log(secondOperator);
-    console.log(result);
-
-})
-
-
-
-
-// btnsOperators.addEventListener("click", e => {
-//     if (firstOperator !== '' && secondOperator === '') { 
-//       secondOperator = e.target.value;
-//       operate(previousNumber, currentNumber, firstOperator); 
-//       clearDisplay = true;
-//   } else if (firstOperator !== '' && secondOperator !== '') { 
-//       display.textContent = result;
-//       operate(result, currentNumber, secondOperator);
-//       clearDisplay = true;   
-//   } else {
-//       firstOperator = e.target.value;
-//       previousNumber = display.textContent;
-//       clearDisplay = true;
-//   }
-// });
